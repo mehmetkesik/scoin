@@ -6,9 +6,9 @@ Go programlama dili ile bitcoin benzeri deneysel kripto para.
 ## Kullanım
 
 ### Bağımlılıklar
-Bu projenin https://github.com/boltdb/bolt, https://github.com/satori/go.uuid, https://godoc.org/golang.org/x/crypto/ripemd160 kütüphanelerine bağımlılığı vardır.
+Bu projenin https://github.com/boltdb/bolt, https://github.com/satori/go.uuid ve https://godoc.org/golang.org/x/crypto/ripemd160 kütüphanelerine bağımlılığı vardır.
 
 ### Derleme
-1: Go programla dili kurulumu yapılmalıdır. [Go Programlama Dili](https://golang.org/dl/)
-2: Bağımlılıklar bölümündeki kütüphaneler yüklenmelidir.
-3: Kaynak kod indirilip `go build` komutuyla derlenmeli ve ekranda görünen linke gidilmelidir. ör: localhost:8080
+1: Go programla dili kurulumu yapılmalıdır. [Go Programlama Dili](https://golang.org/dl/) <br/>
+2: Bağımlılıklar bölümündeki kütüphaneler yüklenmelidir. <br/>
+3: Kaynak kod indirilip `go build` komutuyla derlenmeli ve çalıştırılmalı ardından ekranda görünen linke gidilmelidir. ör: localhost:8080
