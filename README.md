@@ -21,4 +21,4 @@ Bu projenin https://github.com/boltdb/bolt, https://github.com/satori/go.uuid ve
 - Madencilik işlemleri <br/>
 - Web kullanıcı arayüzü <br/><br/>
 
--- Sistem deneyseldir ve yerel ağda çalışmaktadır.
+- - Sistem deneyseldir ve yerel ağda çalışmaktadır.
