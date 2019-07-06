@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1"/>
+    <title>SCoin - Ip Adresleri</title>
+    <link rel="shortcut icon" href="/html/foto/ico.ico"/>
+    <link rel="stylesheet" href="/html/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/html/css/style.css"/>
+    <script src="/html/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/html/js/popper.min.js"></script>
+    <script src="/html/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+    {{template "header.html" .}}
+        <div class="row m0">
+            <div class="col-12 text-center">
+                <h2 class="text-muted">Kayıtlı Ip Adresleri</h2>
+            </div>
+        </div>
+        <hr/>
+        <div class="row m0">
+            <div class="col-12">
+                <strong class="lead">Toplam: {{.IpsLen}}</strong><br/><br/>
+                <ul class="list-group">
+                {{range $index,$ip := .Ips}}
+                    <li class="list-group-item">
+                        <span style="background-color: #4e555b;color: white;padding: 2px 5px 2px 5px;border-radius: 3px;">{{$index}}</span>
+                    <p class="lead" style="display: inline-block;margin-left: 10px;">{{$ip}}</p>
+                    </li>
+                {{end}}
+                </ul>
+            </div>
+        </div>
+    {{template "footer.html" .}}
+    </div>
+</div>
+</body>
+</html>

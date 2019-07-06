@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1"/>
+    <title>SCoin - Ayarlar</title>
+    <link rel="shortcut icon" href="/html/foto/ico.ico"/>
+    <link rel="stylesheet" href="/html/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/html/css/style.css"/>
+    <script src="/html/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/html/js/popper.min.js"></script>
+    <script src="/html/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+    {{template "header.html" .}}
+        <div class="row m0">
+            <div class="col-12 text-center">
+                <h2 class="text-muted">Ayarlar</h2>
+            </div>
+        </div>
+        <hr/>
+        <div class="row m0">
+            <div class="col-12">
+                <p class="lead">İstenilen sıfır bit sayısı: {{.TargetBits}}, Ödül: {{.Prize}} SC</p>
+            </div>
+        </div>
+        <br/>
+        <div class="row m0">
+            <div class="col-4 text-center">
+                <form action="" method="post">
+                    <button type="submit" class="btn btn-lg btn-dark" name="updatebs" value="ok">Blok Zinciri
+                        ve Ayarları Güncelle
+                    </button>
+                </form>
+            </div>
+            <div class="col-4 text-center">
+                <form action="" method="post">
+                    <button type="submit" class="btn btn-lg btn-dark" name="findnodes" value="ok">Ip Adresi Ara
+                    </button>
+                </form>
+            </div>
+            <div class="col-4 text-center">
+                <form action="" method="post">
+                    <button type="submit" class="btn btn-lg btn-dark" name="setnodes" value="ok">Ip Kontrol
+                    </button>
+                </form>
+            </div>
+        </div>
+        <br/>
+        <hr/>
+        <div class="row m0">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <form action="" method="post">
+                    <input type="text" class="form-control" name="ip" placeholder="Ip Adresi (ör: localhost:4182)"
+                           required/><br/>
+                    <button type="submit" class="btn btn-success" name="addip" value="ok">Ip Ekle</button>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    {{template "footer.html" .}}
+    </div>
+</div>
+</body>
+</html>

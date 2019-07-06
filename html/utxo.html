@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1"/>
+    <title>SCoin - Transferler</title>
+    <link rel="shortcut icon" href="/html/foto/ico.ico"/>
+    <link rel="stylesheet" href="/html/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/html/css/style.css"/>
+    <script src="/html/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/html/js/popper.min.js"></script>
+    <script src="/html/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+    {{template "header.html" .}}
+        <div class="row m0">
+            <div class="col-12 text-center">
+                <h2 class="text-muted">Bekleyen Transferler</h2>
+            </div>
+        </div>
+        <hr/>
+        <div class="row m0">
+            <div class="col-12">
+                <strong class="lead">Toplam: {{.UtxoLen}}</strong><br/><br/>
+                <ul class="list-group">
+                {{range $index,$tr := .Utxo}}
+                    <li class="list-group-item">
+                        <strong class="text-muted">ID:</strong> {{$tr.Id}}<br/>
+                        <strong class="text-muted">İmza:</strong> {{$tr.Sign}}<br/>
+                        <strong class="text-muted">Açık anahtar:</strong> {{$tr.PubKey}}<br/>
+                        <strong class="text-muted">Address:</strong> {{$tr.Address}}<br/>
+                        <strong class="text-muted">Miktar:</strong> {{$tr.Amount}}<br/>
+                    </li>
+                {{end}}
+                </ul>
+            </div>
+        </div>
+    {{template "footer.html" .}}
+    </div>
+</div>
+</body>
+</html>

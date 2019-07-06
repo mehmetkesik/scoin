@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1"/>
+    <title>SCoin - Anasayfa</title>
+    <link rel="shortcut icon" href="/html/foto/ico.ico"/>
+    <link rel="stylesheet" href="/html/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/html/css/style.css"/>
+    <script src="/html/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/html/js/popper.min.js"></script>
+    <script src="/html/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function miningcontrol() {
+            let mining1 = document.getElementById("mining1").style.display;
+            let mining2 = document.getElementById("mining2").style.display;
+            if (mining1 == "none") {
+                document.getElementById("mining1").style.display = "block";
+                document.getElementById("mining2").style.display = "none";
+            } else {
+                document.getElementById("mining1").style.display = "none";
+                document.getElementById("mining2").style.display = "block";
+            }
+        }
+
+        function trcontrol() {
+            let transaction1 = document.getElementById("transaction1").style.display;
+            let transaction2 = document.getElementById("transaction2").style.display;
+            if (transaction1 == "none") {
+                document.getElementById("transaction1").style.display = "block";
+                document.getElementById("transaction2").style.display = "none";
+            } else {
+                document.getElementById("transaction1").style.display = "none";
+                document.getElementById("transaction2").style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+    {{template "header.html" .}}
+        <div class="row m0">
+            <div class="col-12 text-center">
+                <h2 class="text-muted">Anasayfa</h2>
+            </div>
+        </div>
+        <hr/>
+        <div class="row m0">
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/html/foto/icon.png" style="width:286px;height:286px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Cüzdan</h5>
+                        <p class="card-text">Yeni cüzdan oluşturabilirsiniz. Oluşturduğunuz cüzdan cüzdanlar
+                            bölümünde görünür.</p>
+                        <form action="/wallets" method="post">
+                            <button class="btn btn-primary" name="newwallet" value="home">Yeni cüzdan oluştur</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/html/foto/transaction.png" style="width:286px;height:286px;">
+                    <div class="card-body" id="transaction1">
+                        <h5 class="card-title">Transfer</h5>
+                        <p class="card-text">Yeni transfer işlemi başlatabilirsiniz. Cüzdanınız gizli ve açık anahtarını
+                            bilmeniz gerekir.</p>
+                        <button class="btn btn-primary" onclick="trcontrol()">Transfer işlemi başlat</button>
+                    </div>
+                    <div class="card-body" id="transaction2" style="display: none;">
+                        <h5 class="card-title">Transfer</h5>
+                        <button class="btn btn-info btn-sm float-right" onclick="trcontrol()"
+                                style="margin-bottom: 10px;"> <
+                        </button>
+                        <form action="/utxo" method="post">
+                            <input type="text" class="form-control" name="privkey" placeholder="Gizli anahtar"
+                                   style="margin-bottom: 10px;" required/>
+                            <input type="text" class="form-control" name="address" placeholder="Gönderilecek adres"
+                                   style="margin-bottom: 10px;" required/>
+                            <input type="number" class="form-control" name="amount" placeholder="Miktar" min="0"
+                                   step="1"
+                                   style="margin-bottom: 10px;" required/>
+                            <button class="btn btn-success" name="newtransaction" value="ok">Başlat</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/html/foto/mining.jpg" style="width:286px;height:286px;">
+                    <div class="card-body" id="mining1">
+                        <h5 class="card-title">Madencilik</h5>
+                        <p class="card-text">Madencilik işlemi başlatabilirsiniz. Madencilik işleminin başında bir
+                            cüzdan adresi girmeniz gerekir.</p>
+                        <button class="btn btn-primary" onclick="miningcontrol()">Madencilik işlemi başlat</button>
+                    </div>
+                    <div class="card-body" id="mining2" style="display: none;">
+                        <h5 class="card-title">Madencilik</h5>
+                        <button class="btn btn-info btn-sm float-right" onclick="miningcontrol()"
+                                style="margin-bottom: 10px;"> <
+                        </button>
+                        <form action="/mining" method="post">
+                            <input type="text" class="form-control" name="address" placeholder="Cüzdan adresi"
+                                   style="margin-bottom: 10px;" required {{if eq .Mining true}}disabled{{end}}/>
+                            <button class="btn btn-success" name="mining" value="ok" type="submit"
+                                    {{if eq .Mining true}}disabled{{end}}>Başlat
+                            </button>
+                        {{if eq .Mining true}}
+                            İşlem devam ediyor...
+                        {{end}}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{template "footer.html" .}}
+</div>
+</body>
+</html>

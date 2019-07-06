@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1, maximum-scale=1"/>
+    <title>SCoin - Cüzdanlar</title>
+    <link rel="shortcut icon" href="/html/foto/ico.ico"/>
+    <link rel="stylesheet" href="/html/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/html/css/style.css"/>
+    <script src="/html/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/html/js/popper.min.js"></script>
+    <script src="/html/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function transaction(id) {
+            let tramount = document.getElementById("tramount" + id).style.display;
+            if (tramount == "none") {
+                document.getElementById("tramount" + id).style.display = "flex";
+                document.getElementById("traddress" + id).style.display = "flex";
+            } else {
+                document.getElementById("tramount" + id).style.display = "none";
+                document.getElementById("traddress" + id).style.display = "none";
+            }
+            return false;
+        }
+
+        function deletewallet(id) {
+            document.getElementById("form" + id).submit();
+            document.forms["form" + id].submit();
+            return false;
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <div class="container">
+    {{template "header.html" .}}
+        <div class="row m0">
+            <div class="col-12 text-center">
+                <h2 class="text-muted">Cüzdanlar</h2>
+                <div class="float-right">
+                    <form action="" method="post">
+                        <button class="btn btn-info" type="submit" name="newwallet" value="wallet">Yeni Cüzdan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row m0">
+        <div class="col-12">
+        {{$sayi := wlen .Wallets}}
+        {{$sayieksibir := sub $sayi}}
+        {{range $index,$wallet := .Wallets}}
+        {{$kalan := kalan $index 2}}
+        {{if eq $kalan 0}}
+        <div class="row">
+        {{end}}
+            <div class="col-6">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">SCoin Cüzdanı</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">id: {{$wallet.Id}}</h6>
+                        <p class="card-text"><strong class="text-muted">Gizli
+                            Anahtar:</strong> {{$wallet.PrivateKey}}
+                        </p>
+                        <p class="card-text"><strong class="text-muted">Açık Anahtar:</strong> {{$wallet.PublicKey}}
+                        </p>
+                        <p class="card-text"><strong class="text-muted">Adres:</strong> {{$wallet.Address}}</p>
+                        <p class="card-text"><strong class="text-muted">Miktar:</strong> {{$wallet.Amount}} SC</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="#" class="card-link" onclick="return transaction('{{$wallet.Id}}')">Transfer
+                                    başlat</a>
+                                <a href="#" class="card-link text-danger"
+                                   onclick="return deletewallet('{{$wallet.Id}}')">Cüzdanı sil</a>
+                                <form action="" method="post" style="display: none;" id="form{{$wallet.Id}}"
+                                      name="form{{$wallet.Id}}">
+                                    <input type="text" name="deletewallet" value="{{$wallet.Id}}"/>
+                                    <button type="submit" name="dw" value="ok"></button>
+                                </form>
+                            </div>
+                        </div>
+                        <form action="" method="post">
+                            <div class="row" style="padding-top: 7px;">
+                                <div class="col-6">
+                                    <input type="number" class="form-control" id="tramount{{$wallet.Id}}" name="amount"
+                                           required step="1" min="0" style="display: none;" placeholder="Miktar"/>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group mb-3" id="traddress{{$wallet.Id}}"
+                                         style="display: none;">
+                                        <input type="text" class="form-control" name="address" placeholder="Adres.."
+                                               required/>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="submit" name="trstart"
+                                                    value="{{$wallet.Id}}">Başlat
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {{if eq $kalan 1}}
+        </div>
+            <br/>
+        {{else}}
+        {{if eq $sayieksibir $index}}
+        </div>
+            <br/>
+        {{end}}
+        {{end}}
+        {{end}}
+        </div>
+    </div>
+</div>
+{{template "footer.html" .}}
+</div>
+</body>
+</html>
