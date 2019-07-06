@@ -15,3 +15,10 @@ Bu projenin https://github.com/boltdb/bolt, https://github.com/satori/go.uuid ve
 ör: localhost:8080
 
 ## Özellikler
+- Blockchain tabanlı kripto para sistemi <br/>
+- Cüzdan oluşturma ve kullanma <br/>
+- Transfer işlemleri <br/>
+- Madencilik işlemleri <br/>
+- Web kullanıcı arayüzü <br/><br/>
+
+-- Sistem deneyseldir ve yerel ağda çalışmaktadır.
