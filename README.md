@@ -9,7 +9,7 @@ Go programlama dili ile bitcoin benzeri deneysel kripto para.
 Bu projenin <br/>
 - https://github.com/boltdb/bolt <br/>
 - https://github.com/satori/go.uuid <br/>
-- https://godoc.org/golang.org/x/crypto/ripemd160 <br/>
+- https://godoc.org/golang.org/x/crypto/ripemd160 <br/><br/>
 kütüphanelerine bağımlılığı vardır.
 
 ### Derleme
